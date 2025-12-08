@@ -1,0 +1,20 @@
+﻿@model PetAdoptionPredictionViewModel
+
+<h2>Predict Adoption Probability</h2>
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label>Select Pet:</label>
+        <select asp-for="PetId" class="form-control" asp-items="@(ViewBag.Pets as SelectList)">
+            <option value="">--Select Pet--</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Predict</button>
+</form>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.PetName))
+{
+    <div class="mt-3">
+        <p>Șansele să adopți animalul <strong>@Model.PetName</strong> sunt de: <strong>@Model.AdoptionProbability</strong></p>
+    </div>
+}

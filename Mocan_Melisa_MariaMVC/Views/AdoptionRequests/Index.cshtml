@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Mocan_Melisa_MariaMVC.Models.AdoptionRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DesiredPetType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinAgeMonths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxAgeMonths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesiredSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesiredPetType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinAgeMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxAgeMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesiredSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+             <td>
+                    @if (item.Pet == null)
+                    {
+                        <span>Any pet available</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Pet.BreedNavigation.BreedName)
+                    }
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

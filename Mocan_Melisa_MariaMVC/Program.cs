@@ -1,7 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Mocan_Melisa_MariaMVC.Data;
+using Mocan_Melisa_MariaMVC.Services;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PetsAdoptionContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PetsAdoptionContext") ?? throw new InvalidOperationException("Connection string 'PetsAdoptionContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient<IPetAdoptionService, PetAdoptionService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:52464");
+});
 
 var app = builder.Build();
 

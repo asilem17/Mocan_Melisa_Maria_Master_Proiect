@@ -1,0 +1,454 @@
+﻿{
+  "Scenario": "Regression",
+  "DataSource": {
+    "Version": 3,
+    "EscapeCharacter": "\"",
+    "ReadMultiLines": false,
+    "KeepDiacritics": false,
+    "KeepPunctuations": false,
+    "AllowQuoting": false,
+    "Type": "TabularFile",
+    "FilePath": "C:\\Users\\Melisa\\Documents\\facultate\\master\\anul 1 sem 1\\medii de programare avansate\\archive\\pet_adoption_data.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "PetID",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "PetType",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "Breed",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "AgeMonths",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "Color",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "Size",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "WeightKg",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "Vaccinated",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "HealthCondition",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "TimeInShelterDays",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "AdoptionFee",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "PreviousOwner",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "AdoptionLikelihood",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 0.72177261259702585,
+        "RuntimeInSeconds": 0.63,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ],
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "InputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size",
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 9,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 465,
+            "FeatureFraction": 0.78624522751743009,
+            "LearningRate": 0.84455488937890055,
+            "LabelColumnName": "AdoptionLikelihood",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 0.72173709892121285,
+        "RuntimeInSeconds": 0.568,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ],
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "InputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size",
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 9,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 465,
+            "FeatureFraction": 0.78618634565851708,
+            "LearningRate": 0.84365774778705949,
+            "LabelColumnName": "AdoptionLikelihood",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 0.72085984745421028,
+        "RuntimeInSeconds": 0.636,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ],
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "InputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size",
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 9,
+            "MinimumExampleCountPerLeaf": 4,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 466,
+            "FeatureFraction": 0.78643520976626169,
+            "LearningRate": 0.84337784834814256,
+            "LabelColumnName": "AdoptionLikelihood",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 0.72073047479193719,
+        "RuntimeInSeconds": 0.938,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ],
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "InputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size",
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 9,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 464,
+            "FeatureFraction": 0.78625033862601423,
+            "LearningRate": 0.84537434558169622,
+            "LabelColumnName": "AdoptionLikelihood",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 0.7204061058211414,
+        "RuntimeInSeconds": 0.567,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ],
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "InputColumnNames": [
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "PetType",
+              "Breed",
+              "Size",
+              "AgeMonths",
+              "Vaccinated",
+              "HealthCondition",
+              "TimeInShelterDays"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 9,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 465,
+            "FeatureFraction": 0.78593253277731545,
+            "LearningRate": 0.83763794555967774,
+            "LabelColumnName": "AdoptionLikelihood",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
+      "e2": "Concatenate",
+      "e3": "FastTreeRegression",
+      "e4": "FastForestRegression",
+      "e5": "LightGbmRegression",
+      "e6": "LbfgsPoissonRegressionRegression",
+      "e7": "SdcaRegression"
+    },
+    "Schema": "e0 * e1 * e2 * (e3 + e4 + e5 + e6 + e7)",
+    "MetricName": "RSquared",
+    "ModelFilePath": "C:\\Users\\Melisa\\Documents\\facultate\\master\\anul 1 sem 1\\medii de programare avansate\\Mocan_Melisa_Proiect\\Mocan_Melisa_MariaMVC\\PetsAdoptionPrediction.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 5,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "RegressionTrainingOption",
+    "TrainingTime": 600,
+    "LabelColumn": "AdoptionLikelihood",
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}
