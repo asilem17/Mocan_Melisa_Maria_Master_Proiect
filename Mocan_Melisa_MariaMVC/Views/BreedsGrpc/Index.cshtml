@@ -1,0 +1,33 @@
+﻿@model Mocan_Melisa_Grpc.BreedList
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Breeds Grpc</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Breed Name</th>
+            <th>Animal Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Items)
+        {
+            <tr>
+                <td>@b.BreedName</td>
+                <td>@b.AnimalType</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@b.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+﻿@model Mocan_Melisa_Grpc.Breed
+
+<h2>Delete Breed</h2>
+
+<p>Are you sure you want to delete @Model.BreedName ?</p>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

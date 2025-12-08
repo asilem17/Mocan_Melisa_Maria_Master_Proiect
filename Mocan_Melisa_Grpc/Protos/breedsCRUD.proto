@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Mocan_Melisa_Grpc";
+
+package breed;
+
+service BreedService {
+  rpc GetAll (Empty) returns (BreedList);
+  rpc Get (BreedId) returns (Breed);
+  rpc Insert (Breed) returns (Empty);
+  rpc Update (Breed) returns (Breed);
+  rpc Delete (BreedId) returns (Empty);
+}
+
+message Empty {}
+
+message Breed {
+  int32 id = 1;
+  string breedName = 2;
+  string animalType = 3;
+}
+
+message BreedList {
+  repeated Breed items = 1;
+}
+
+message BreedId {
+  int32 id = 1;
+}

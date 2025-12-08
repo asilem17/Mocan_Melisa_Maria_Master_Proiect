@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36717.8 d17.14
+VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mocan_Melisa_MariaMVC", "Mocan_Melisa_MariaMVC.csproj", "{3F23CDA4-6341-4709-ADF2-45E4DEC25497}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetsAdoptionPredictionWebApi", "..\PetsAdoptionPredictionWebApi\PetsAdoptionPredictionWebApi.csproj", "{53BA34F4-5F56-E156-B9CA-3821CB3F980A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mocan_Melisa_Grpc", "..\Mocan_Melisa_Grpc\Mocan_Melisa_Grpc.csproj", "{B8C9BEA1-45B5-4A6F-8B78-4F31E4E01F42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{53BA34F4-5F56-E156-B9CA-3821CB3F980A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BA34F4-5F56-E156-B9CA-3821CB3F980A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BA34F4-5F56-E156-B9CA-3821CB3F980A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C9BEA1-45B5-4A6F-8B78-4F31E4E01F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C9BEA1-45B5-4A6F-8B78-4F31E4E01F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C9BEA1-45B5-4A6F-8B78-4F31E4E01F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C9BEA1-45B5-4A6F-8B78-4F31E4E01F42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
