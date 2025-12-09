@@ -39,3 +39,7 @@ body {
     height: 60px;
     margin-right: 5px;
 }
+
+.control-label {
+    font-weight: bold;
+}
