@@ -1,0 +1,52 @@
+﻿@model Mocan_Melisa_MariaMVC.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Adoption dashboard";
+}
+
+<h1>Adoption dashboard</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="control-label">Total pets</p>
+        <div class="card custom-dashboard mb-3">
+            <div class="card-body">
+                <div class="card-header">
+                    Available pets
+                </div>
+                <h1 class="card-title">@Model.TotalPets</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <p class="control-label">Total adoption requests</p>
+        <div class="card custom-dashboard mb-3">
+            <div class="card-body">
+                <div class="card-header">
+                     Adoption requests
+                </div>
+                <h1 class="card-title">@Model.TotalAdoptionRequests</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <p class="control-label">Total donations</p>
+        <div class="card custom-dashboard mb-3">
+            <div class="card-body">
+                <div class="card-header">
+                    Total donations
+                </div>
+                <h1 class="card-title">@Model.TotalDonations</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

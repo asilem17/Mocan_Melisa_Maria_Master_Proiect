@@ -27,6 +27,18 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             var petsAdoptionContext = _context.Pet.Include(p => p.BreedNavigation);
             return View(await petsAdoptionContext.ToListAsync());
         }
+        public async Task<IActionResult> Dashboard() {             
+            var totalPets = await _context.Pet.CountAsync();
+            var totalAdoptionRequests = await _context.AdoptionRequest.CountAsync();
+            var totalDonations = await _context.Donation.CountAsync();
+            var dashboardViewModel = new DashboardViewModel
+            {
+                TotalPets = totalPets,
+                TotalAdoptionRequests = totalAdoptionRequests,
+                TotalDonations = totalDonations
+            };
+            return View(dashboardViewModel);
+        }
 
         // GET: Pets/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -280,8 +292,7 @@ namespace Mocan_Melisa_MariaMVC.Controllers
                 file.CopyTo(stream);
             }
         }
-
-
+        
         private bool PetExists(int id)
         {
             return _context.Pet.Any(e => e.Id == id);

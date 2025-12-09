@@ -43,3 +43,8 @@ body {
 .control-label {
     font-weight: bold;
 }
+.custom-dashboard {
+    background-color: #fff5ee !important;
+    color: #333 !important;
+    border: 1px solid #ffcc66; 
+}
