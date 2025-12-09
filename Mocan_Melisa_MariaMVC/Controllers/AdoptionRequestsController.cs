@@ -50,20 +50,22 @@ namespace Mocan_Melisa_MariaMVC.Controllers
         public IActionResult Create()
         {
             var pets = _context.Pet
-            .Include(p => p.BreedNavigation)
             .Select(p => new
             {
                 Id = p.Id,
-                Name = p.BreedNavigation.BreedName
+                Name = p.PetName
             })
             .ToList();
+
 
             var petList = new List<object>
             {
                 new { Id = (int?)null, Name = "Any pet available" }
             };
             petList.AddRange(pets.Cast<object>());
+
             ViewData["PetId"] = new SelectList(petList, "Id", "Name");
+
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
             ViewData["PetType"] = new SelectList(_context.Pet
                 .Select(p => p.PetType)
@@ -77,7 +79,7 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             {
                 "Small",
                 "Medium",
-                "Large"
+                "Big"
             });
 
             return View();
@@ -108,11 +110,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
                 );
 
             ViewData["PetId"] = new SelectList(
-                _context.Pet.Include(p => p.BreedNavigation).ToList(),
+                _context.Pet.ToList(),
                 "Id",
-                "BreedNavigation.BreedName",
+                "PetName",
                 adoptionRequest.PetId
-            );
+                );
+
 
             ViewData["UserId"] = new SelectList(
                 _context.User.ToList(),
@@ -124,8 +127,9 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             {
                 "Small",
                 "Medium",
-                "Large"
+                "Big"
             }, adoptionRequest.DesiredSize);
+            
 
             return View(adoptionRequest);
         }
@@ -143,7 +147,23 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName", adoptionRequest.PetId);
+            var pets = _context.Pet
+            .Select(p => new
+            {
+                Id = p.Id,
+                Name = p.PetName
+            })
+            .ToList();
+
+
+            var petList = new List<object>
+            {
+                new { Id = (int?)null, Name = "Any pet available" }
+            };
+            petList.AddRange(pets.Cast<object>());
+
+            ViewData["PetId"] = new SelectList(petList, "Id", "Name");
+
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email", adoptionRequest.UserId);
             ViewData["PetType"] = new SelectList(_context.Pet
                 .Select(p => p.PetType)
@@ -157,7 +177,7 @@ namespace Mocan_Melisa_MariaMVC.Controllers
                 {
                     "Small",
                     "Medium",
-                    "Large"
+                    "Big"
                 });
 
             return View(adoptionRequest);
@@ -195,7 +215,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName", adoptionRequest.PetId);
+            ViewData["PetId"] = new SelectList(
+            _context.Pet.ToList(),
+            "Id",
+            "PetName",
+            adoptionRequest.PetId
+            );
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email", adoptionRequest.UserId);
             ViewData["PetType"] = new SelectList(
             _context.Pet
@@ -211,7 +236,7 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             {
                 "Small",
                 "Medium",
-                "Large"
+                "Big"
             }, adoptionRequest.DesiredSize);
 
             return View(adoptionRequest);

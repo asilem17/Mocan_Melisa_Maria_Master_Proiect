@@ -4,37 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pets</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create new</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PetName)
+                Pet image
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PetType)
+                Pet name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AgeMonths)
+                Pet type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Size)
+                Age in months
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vaccinated)
+                Size
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HealthCondition)
+                Vaccinated
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeInShelterDays)
+                Health condition
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BreedNavigation)
+                Time in shelter(days)
+            </th>
+            <th>
+                Breed
             </th>
             <th></th>
         </tr>
@@ -42,6 +45,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    <img src="@(Url.Content($"~/images/pets/{item.Id}.jpg"))"
+                         onerror="this.onerror=null; this.src='@Url.Content("~/images/noimage.png")';"
+                         style="max-width:120px; max-height:120px;" />
+                </td>
             <td>
                     @Html.DisplayFor(modelItem => item.PetName)
             </td>

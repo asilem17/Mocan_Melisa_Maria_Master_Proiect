@@ -6,53 +6,60 @@
 
 <h1>Create</h1>
 
-<h4>AdoptionRequest</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DesiredPetType" class="control-label"></label>
-                <select asp-for="DesiredPetType" class="form-control" asp-items="@(ViewData["PetType"] as SelectList)"></select>
+                <label asp-for="DesiredPetType" class="control-label">Desired pet type</label>
+                <select asp-for="DesiredPetType" class="form-control" asp-items="@(ViewData["PetType"] as SelectList)">
+                    <option value="">Select desired type</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="MinAgeMonths" class="control-label"></label>
+                <label asp-for="MinAgeMonths" class="control-label">Minimum age months</label>
                 <input asp-for="MinAgeMonths" class="form-control" />
                 <span asp-validation-for="MinAgeMonths" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxAgeMonths" class="control-label"></label>
+                <label asp-for="MaxAgeMonths" class="control-label">Maximum age months</label>
                 <input asp-for="MaxAgeMonths" class="form-control" />
                 <span asp-validation-for="MaxAgeMonths" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DesiredSize" class="control-label"></label>
-                <select asp-for="DesiredSize" class="form-control" asp-items="@(ViewData["Sizes"] as SelectList)"></select>
+                <label asp-for="DesiredSize" class="control-label">Desired size</label>
+                <select asp-for="DesiredSize" class="form-control" asp-items="@(ViewData["Sizes"] as SelectList)">
+                    <option value="">Select size</option>
+                </select>
                 <span asp-validation-for="DesiredSize" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="@(ViewData["UserId"] as SelectList)"></select>
+                <label asp-for="UserId" class="control-label">User email</label>
+                <select asp-for="UserId" class="form-control" asp-items="@(ViewData["UserId"] as SelectList)">
+                    <option value="">Select user email</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="PetId" class="control-label"></label>
-                <select asp-for="PetId" class="form-control" asp-items="@(ViewData["PetId"] as SelectList)"></select>
+                <label asp-for="PetId" class="control-label">Pet name</label>
+                <select asp-for="PetId" class="form-control" asp-items="@(ViewData["PetId"] as SelectList)">
+                    <option value="">Select pet name</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="RequestDate" class="control-label"></label>
+                <label asp-for="RequestDate" class="control-label">Request date</label>
                 <input asp-for="RequestDate" class="form-control" />
                 <span asp-validation-for="RequestDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary mt-2" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to list</a>
 </div>
 
 @section Scripts {

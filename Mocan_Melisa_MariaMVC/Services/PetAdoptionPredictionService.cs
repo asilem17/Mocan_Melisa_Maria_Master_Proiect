@@ -24,8 +24,8 @@ namespace Mocan_Melisa_MariaMVC.Services
             if (pet == null) return 0f;
             int healthNumeric = pet.HealthCondition switch
             {
-                "1-Medical condition" => 1,
-                "0-Healthy" => 0,
+                "Medical condition" => 1,
+                "Healthy" => 0,
                 _ => 0 
             };
 

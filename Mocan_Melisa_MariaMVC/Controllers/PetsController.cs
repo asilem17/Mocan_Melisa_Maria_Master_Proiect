@@ -13,10 +13,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
     public class PetsController : Controller
     {
         private readonly PetsAdoptionContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public PetsController(PetsAdoptionContext context)
+        public PetsController(PetsAdoptionContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Pets
@@ -51,10 +53,24 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             ViewData["BreedId"] = new SelectList(_context.Breed, "Id", "BreedName");
             var healthOptions = new List<SelectListItem>
             {
-            new SelectListItem { Value = "0-Healthy", Text = "0 - Healthy" },
-            new SelectListItem { Value = "1-Medical condition", Text = "1 - Medical condition" }
+            new SelectListItem { Value = "Healthy", Text = "Healthy" },
+            new SelectListItem { Value = "Medical condition", Text = "Medical condition" }
             };
             ViewData["HealthConditionList"] = new SelectList(healthOptions, "Value", "Text");
+            ViewData["PetType"] = new SelectList(_context.Pet
+            .Select(p => p.PetType)
+            .Distinct()
+            .ToList()
+            .Select(pt => new { Value = pt, Text = pt }),
+                "Value",
+                "Text"
+            );
+            ViewData["Sizes"] = new SelectList(new[]
+            {
+                 "Small",
+                 "Medium",
+                 "Big"
+             });
             return View();
         }
 
@@ -63,22 +79,45 @@ namespace Mocan_Melisa_MariaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PetName,PetType,AgeMonths,Size,Vaccinated,HealthCondition,TimeInShelterDays,BreedId")] Pet pet)
+        public async Task<IActionResult> Create([Bind("Id,PetName,PetType,AgeMonths,Size,Vaccinated,HealthCondition,TimeInShelterDays,BreedId")] Pet pet, IFormFile ImageFile)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(pet);
                 await _context.SaveChangesAsync();
+                if (ImageFile != null && ImageFile.Length > 0)
+                {
+                    SavePetImage(ImageFile, pet.Id);
+                }
                 return RedirectToAction(nameof(Index));
+
             }
+
             ViewData["BreedId"] = new SelectList(_context.Breed, "Id", "BreedName", pet.BreedId);
 
             var healthOptions = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0-Healthy", Text = "0 - Healthy" },
-                new SelectListItem { Value = "1-Medical condition", Text = "1 - Medical condition" }
+                new SelectListItem { Value = "Healthy", Text = "Healthy" },
+                new SelectListItem { Value = "Medical condition", Text = "Medical condition" }
             };
             ViewData["HealthConditionList"] = new SelectList(healthOptions, "Value", "Text", pet.HealthCondition);
+
+            ViewData["PetType"] = new SelectList(
+            _context.Pet
+                .Select(p => p.PetType)
+                .Distinct()
+                .ToList()
+                .Select(pt => new { Value = pt, Text = pt }),
+                    "Value",
+                    "Text",
+                    pet.PetType
+                );
+            ViewData["Sizes"] = new SelectList(new[]
+            {
+                "Small",
+                "Medium",
+                "Big"
+            }, pet.Size);
             return View(pet);
         }
 
@@ -98,11 +137,25 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             ViewData["BreedId"] = new SelectList(_context.Breed, "Id", "BreedName", pet.BreedId);
             var healthOptions = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0-Healthy", Text = "0 - Healthy" },
-                new SelectListItem { Value = "1-Medical condition", Text = "1 - Medical condition" }
+                new SelectListItem { Value = "Healthy", Text = "Healthy" },
+                new SelectListItem { Value = "Medical condition", Text = "Medical condition" }
             };
 
             ViewData["HealthConditionList"] = new SelectList(healthOptions, "Value", "Text");
+            ViewData["PetType"] = new SelectList(_context.Pet
+            .Select(p => p.PetType)
+            .Distinct()
+            .ToList()
+            .Select(pt => new { Value = pt, Text = pt }),
+                "Value",
+                "Text"
+            );
+            ViewData["Sizes"] = new SelectList(new[]
+            {
+                 "Small",
+                 "Medium",
+                 "Big"
+             });
             return View(pet);
         }
 
@@ -111,7 +164,7 @@ namespace Mocan_Melisa_MariaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PetName,PetType,AgeMonths,Size,Vaccinated,HealthCondition,TimeInShelterDays,BreedId")] Pet pet)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PetName,PetType,AgeMonths,Size,Vaccinated,HealthCondition,TimeInShelterDays,BreedId")] Pet pet, IFormFile ImageFile)
         {
             if (id != pet.Id)
             {
@@ -124,6 +177,10 @@ namespace Mocan_Melisa_MariaMVC.Controllers
                 {
                     _context.Update(pet);
                     await _context.SaveChangesAsync();
+                    if (ImageFile != null && ImageFile.Length > 0)
+                    {
+                        SavePetImage(ImageFile, pet.Id);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,10 +199,27 @@ namespace Mocan_Melisa_MariaMVC.Controllers
 
             var healthOptions = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0-Healthy", Text = "0 - Healthy" },
-                new SelectListItem { Value = "1-Medical condition", Text = "1 - Medical condition" }
+                new SelectListItem { Value = "Healthy", Text = "Healthy" },
+                new SelectListItem { Value = "Medical condition", Text = "Medical condition" }
             };
             ViewData["HealthConditionList"] = new SelectList(healthOptions, "Value", "Text", pet.HealthCondition);
+           
+            ViewData["Sizes"] = new SelectList(new[]
+            {
+                "Small",
+                "Medium",
+                "Big"
+            }, pet.Size);
+            ViewData["PetType"] = new SelectList(
+            _context.Pet
+                .Select(p => p.PetType)
+                .Distinct()
+                .ToList()
+                .Select(pt => new { Value = pt, Text = pt }),
+                    "Value",
+                    "Text",
+                    pet.PetType
+                );
             return View(pet);
         }
 
@@ -182,6 +256,31 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        private void SavePetImage(IFormFile file, int petId)
+        {
+            // allowed extensions
+            var allowed = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowed.Contains(ext)) ext = ".jpg"; // fallback
+
+            var imagesFolder = Path.Combine(_env.WebRootPath, "images", "pets");
+            if (!Directory.Exists(imagesFolder)) Directory.CreateDirectory(imagesFolder);
+
+            var filePath = Path.Combine(imagesFolder, $"{petId}{ext}");
+
+            // delete old files with other extensions for same id (optional cleanup)
+            var existing = Directory.GetFiles(imagesFolder, $"{petId}.*");
+            foreach (var f in existing)
+            {
+                try { System.IO.File.Delete(f); } catch { /* ignore */ }
+            }
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+        }
+
 
         private bool PetExists(int id)
         {

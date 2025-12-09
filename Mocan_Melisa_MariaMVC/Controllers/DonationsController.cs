@@ -51,6 +51,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
         {
             ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName");
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
+            ViewData["Type"] = new SelectList(new[]
+            {
+                "Cash",
+                "Card",
+                "Bank check"
+            });
             return View();
         }
 
@@ -69,6 +75,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             }
             ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName", donation.PetId);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email", donation.UserId);
+            ViewData["Type"] = new SelectList(new[]
+            {
+                "Cash",
+                "Card",
+                "Bank check"
+            }, donation.Type);
             return View(donation);
         }
 
@@ -87,6 +99,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             }
             ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName", donation.PetId);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email", donation.UserId);
+            ViewData["Type"] = new SelectList(new[]
+            {
+                "Cash",
+                "Card",
+                "Bank check"
+            });
             return View(donation);
         }
 
@@ -124,6 +142,12 @@ namespace Mocan_Melisa_MariaMVC.Controllers
             }
             ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName", donation.PetId);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email", donation.UserId);
+            ViewData["Type"] = new SelectList(new[]
+            {
+                "Cash",
+                "Card",
+                "Bank check"
+            }, donation.Type);
             return View(donation);
         }
 
